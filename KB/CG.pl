@@ -1,4 +1,4 @@
-:-include('./KB/KB.pl').
+:-include('./KB/KB2.pl').
 :- set_prolog_stack(global, limit(100 000 000 000)).
 :- set_prolog_stack(trail,  limit(20 000 000 000)).
 :- set_prolog_stack(local,  limit(2 000 000 000)).
@@ -24,18 +24,21 @@ s0(Situation) :-
     setof(S, fluent(S), Situation).
 
 % Take a list of Actions and execute them
-execute_process(S1, [], S1, s0). % Nothing to do
+execute_process([], [], S1, s0):- 
+    s0(S1). % Nothing to do
 execute_process(S1, [Action|Process], S2, S) :-
-    poss(Action, S1), % Ensure valid Process
-    result(S1, Action, Sd, Type),
+    
+    execute_process(S1, Process, Sd, NxtS),
+
+    poss(Action, Sd), % Ensure valid Process
+    result(Sd, Action, S2, Type),
     % print(Action),
-    % nl,
-    % print(S1),
     % nl,
     % print(Sd),
     % nl,
-    execute_process(Sd, Process, S2, NxtS),
-    S = result(Type,NxtS).
+    % print(S2),
+    % nl,
+    S=result(Type,NxtS).
 
 % Does a fluent hold (is true) in the Situation?
 % This is the query mechanism for Situations
@@ -53,14 +56,7 @@ replace_fluent(S1, OldEl, NewEl, S2) :-
 
 remove(X,[X|T],T).
 remove(X,[H|T],[H|Out]):-remove(X,T,Out).
-% Lots of actions to declare here...
-% Still less code than writing out the
-% graph we're representing
-% 
-% CG's Action Repertoire :
-%  - traverse(Origin, Destination)
-%  - pickup(Item)
-%  - drop(Item)
+
 test(X):-
     X>0.
 
@@ -139,14 +135,6 @@ result(S1, drop(X,Y,PickedShips), S2, Type) :-
                    holding(nothing), S2).
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 goalSituation(ships(X)):- X = [].
 goalSituation(location(X, Y)) :- fact(station(X, Y)).
 goalSituation(holding(nothing)).
@@ -164,12 +152,13 @@ reached_goal(GoalSituation, Situation) :-
 
 
 dfs(Process, S) :-
-    s0(S0),
     goal_situation(GoalSituation),
 
     % generate a solution
-    execute_process(S0, Process, Result, S),
+    execute_process([], Process, Result, S),
     % test solution
+    % print_s(Result),
+    % nl,
     reached_goal(GoalSituation, Result).
 
 ids(X,L, S) :-
@@ -184,16 +173,23 @@ goal(S):-
     ids(S1,1,S).
 
 
-% getOutput([],"s0").
-% getOutput([traverse(Dir,_,_)|L], Out):-
-%     getOutput(L,Out1),
-%     Out = result(Dir, Out1).
-% getOutput([pickup(_, _)|L], Out):-
-%     getOutput(L,Out1),
-%     Out = result(pickup, Out1).
-% getOutput([drop(_,_,_)|L], Out):-
-%     getOutput(L,Out1),
-%     Out = result(drop, Out1).
+getOutput([],"s0").
+getOutput([traverse(Dir,_,_)|L], Out):-
+    getOutput(L,Out1),
+    Out = result(Dir, Out1).
+getOutput([pickup(_, _)|L], Out):-
+    getOutput(L,Out1),
+    Out = result(pickup, Out1).
+getOutput([drop(_,_,_)|L], Out):-
+    getOutput(L,Out1),
+    Out = result(drop, Out1).
+
+reverse(List,Result) :-
+    reverse(List,[],Result).
+reverse([],ReversedList,ReversedList).
+reverse([Head|Tail],RestTail,ReverseList) :-
+    reverse(Tail,[Head|RestTail],ReverseList).
+
 
 
 
