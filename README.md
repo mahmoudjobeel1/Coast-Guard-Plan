@@ -4,17 +4,20 @@ The Coast Guard problem is a problem where we have a grid (3 x 3) or (4 x 4) rep
 *******************************************
 
 ## Test Case:
-grid(4,4).
-agent_loc(0,2).
-ships_loc([[1,2], [3,2]]).
+grid(3,3).
+agent_loc(0,1).
+ships_loc([[2,2],[1,2]]).
 station(1,1).
-capacity(2).
+capacity(1).
+
+![alt text] (https://ibb.co/TthRYRx)
 
 ## Result:
-result(drop,result(left,result(pickup,result(right,result(drop,result(left,result(up,result(up,result(pickup,result(down,result(down,result(down,s0))))))))))))
-result(drop,result(left,result(pickup,result(right,result(drop,result(left,result(up,result(up,result(pickup,result(down,result(down,result(down,s0))))))))))))
-others
+- sult(drop,result(left,result(pickup,result(right,result(drop,result(left,result(up,result(pickup,result(right,result(down,result(down,s0)))))))))))
+- sult(drop,result(left,result(pickup,result(right,result(drop,result(up,result(left,result(pickup,result(right,result(down,result(down,s0)))))))))))
+- others
 
 ## Time:
- 28.43 s
+3.46 s
+
 
