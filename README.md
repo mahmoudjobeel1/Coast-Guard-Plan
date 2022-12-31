@@ -21,10 +21,3 @@ capacity(1).
 ## Time:
 3.46 s
 
-
-
-Made with ["https://avatars.githubusercontent.com/u/61662389?v=4"](https://github.com/Abdelrahman-Khater).
-
-
-
-
