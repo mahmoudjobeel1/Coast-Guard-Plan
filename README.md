@@ -10,7 +10,6 @@ ships_loc([[2,2],[1,2]]).
 station(1,1).
 capacity(1).
 
-![Alt text] (https://i.postimg.cc/CKZjVmnP/KB-example.png)
 ![alt text](https://i.postimg.cc/CKZjVmnP/KB-example.png)
 
 
