@@ -11,6 +11,8 @@ station(1,1).
 capacity(1).
 
 ![Alt text] (https://i.postimg.cc/CKZjVmnP/KB-example.png)
+![alt text](https://i.postimg.cc/CKZjVmnP/KB-example.png)
+
 
 ## Result:
 - sult(drop,result(left,result(pickup,result(right,result(drop,result(left,result(up,result(pickup,result(right,result(down,result(down,s0)))))))))))
