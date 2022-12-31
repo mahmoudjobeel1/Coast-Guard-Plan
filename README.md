@@ -22,11 +22,8 @@ capacity(1).
 3.46 s
 
 
-<a href = "https://github.com/Abdelrahman-Khater">
- </a>
-<a href = "https://github.com/Abdelrahman-Khater">
-  <img src = "https://avatars.githubusercontent.com/u/61662389?v=4"/>
-</a>
+
+Made with [https://avatars.githubusercontent.com/u/61662389?v=4](https://github.com/Abdelrahman-Khater).
 
 
 
