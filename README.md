@@ -14,8 +14,8 @@ capacity(1).
 
 
 ## Result:
-- sult(drop,result(left,result(pickup,result(right,result(drop,result(left,result(up,result(pickup,result(right,result(down,result(down,s0)))))))))))
-- sult(drop,result(left,result(pickup,result(right,result(drop,result(up,result(left,result(pickup,result(right,result(down,result(down,s0)))))))))))
+- result(drop,result(left,result(pickup,result(right,result(drop,result(left,result(up,result(pickup,result(right,result(down,result(down,s0)))))))))))
+- result(drop,result(left,result(pickup,result(right,result(drop,result(up,result(left,result(pickup,result(right,result(down,result(down,s0)))))))))))
 - others
 
 ## Time:
